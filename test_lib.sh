@@ -1,3 +1,6 @@
+GREEN='\033[0;32m'
+NORMAL='\033[0m'
+
 make > make.log
 gcc -Wall -Wextra -Werror -o test_lib test_lib.c -L. -lft
 echo
@@ -9,7 +12,7 @@ echo
 ./test_lib 5 | grep ">>"
 ./test_lib 6 | grep ">>"
 test -f res
-[ -f res ] && chmod 666 res && rm res || echo "All tests passed!"
+[ -f res ] && chmod 666 res && rm res || echo "${GREEN}All tests passed!${NORMAL}"
 echo
 chmod 777 test_lib
 rm test_lib

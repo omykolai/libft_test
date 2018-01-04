@@ -6,7 +6,7 @@
 /*   By: omykolai <omykolai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/26 16:45:58 by omykolai          #+#    #+#             */
-/*   Updated: 2017/12/26 17:21:33 by omykolai         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:44:34 by omykolai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 #include <time.h>
 #include <unistd.h>
 #include <string.h>
+
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define YELLOW  "\x1b[33m"
+#define RESET   "\x1b[0m"
 
 char	*get_str(char *str)
 {
@@ -37,7 +42,7 @@ int 	check_memcmp(const void *s1, const void *s2, int res)
 
 	val = ft_memcmp(s1, s2, 5);
 	if (val != res)
-		printf(">> Your ft_memcmp(%s,%s, 5) == %d\n\n", 
+		printf(RED RED ">> Your ft_memcmp(%s,%s, 5) == %d\n\n" RESET RESET, 
 			get_str((char*)s1),
 			get_str((char*)s2), val);
 	else
@@ -50,7 +55,7 @@ int 	check_strcmp(const char *s1, const char *s2, int res)
 
 	val = ft_strcmp(s1, s2);
 	if (val != res)
-		printf(">> Your ft_strcmp(%s,%s) == %d\n\n", 
+		printf(RED ">> Your ft_strcmp(%s,%s) == %d\n\n" RESET, 
 			get_str((char*)s1),
 			get_str((char*)s2), val);
 	else
@@ -63,7 +68,7 @@ int 	check_strncmp(const char *s1, const char *s2, int res)
 
 	val = ft_strncmp(s1, s2, 5);
 	if (val != res)
-		printf(">> Your ft_strncmp(%s,%s, 5) == %d\n\n", 
+		printf(RED ">> Your ft_strncmp(%s,%s, 5) == %d\n\n" RESET, 
 			get_str((char*)s1),
 			get_str((char*)s2), val);
 	else
@@ -77,7 +82,7 @@ int 	check_strequ(const char *s1, const char *s2, int res)
 
 	val = ft_strequ(s1, s2);
 	if (val != res)
-		printf(">> Your ft_strnequ(%s,%s) == %d\n\n", 
+		printf(RED ">> Your ft_strnequ(%s,%s) == %d\n\n" RESET, 
 			get_str((char*)s1),
 			get_str((char*)s2), val);
 	else
@@ -91,7 +96,7 @@ int 	check_strnequ(const char *s1, const char *s2, int res)
 
 	val = ft_strnequ(s1, s2, 5);
 	if (val != res)
-		printf(">> Your ft_strnequ(%s,%s, 5) == %d\n\n", 
+		printf(RED ">> Your ft_strnequ(%s,%s, 5) == %d\n\n" RESET, 
 			get_str((char*)s1),
 			get_str((char*)s2), val);
 	else
@@ -106,7 +111,7 @@ int 	check_strjoin(const char *s1, const char *s2, char *res)
 	val = ft_strjoin(s1, s2);
 	if (((!val || !res) && val != res) || 
 		((val && res) && strcmp(val, res) != 0))
-		printf(">> Your ft_strjoin(%s,%s) == %s\n\n", 
+		printf(RED ">> Your ft_strjoin(%s,%s) == %s\n\n" RESET, 
 			get_str((char*)s1),
 			get_str((char*)s2), get_str(val));
 	else
@@ -139,7 +144,7 @@ int 	check_putstr_speed(void)
   	system("rm temp1");
   	if ((difference2 == 0 && difference1 > 3) ||
   		difference1 / difference2 > 3)
-  		printf(">> You probably write one symbol at a time in your ft_putstr_fd, which is slow. \nPS: Also check your ft_putstr, ft_putendl, ft_putendl_fd!\n\n");
+  		printf(YELLOW ">> You probably write one symbol at a time in your ft_putstr_fd, which is slow. \nPS: Also check your ft_putstr, ft_putendl, ft_putendl_fd!\n\n" RESET);
   	else
   		return (0);
   	return (1);
